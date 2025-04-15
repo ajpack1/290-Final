@@ -12,5 +12,4 @@ Central Concepts Include:
 - Object Manipulation: Placing, moving, and altering objects based on hand controls in your environment.
 - Accessibility Focused Play: Using hand movements instead of controllers to increase accessibility for low-dexterity players. 
 
-<img width="958" alt="Screenshot 2025-04-10 at 10 49 15 AM" src="https://github.com/user-attachments/assets/dfdc8887-5b12-4bfb-a1b9-40c6e085e565" />
-
+<img width="877" alt="Screenshot 2025-04-15 at 9 34 50 AM" src="https://github.com/user-attachments/assets/21221eb7-5aa0-4efd-84ac-a25a1d5b3e59" />

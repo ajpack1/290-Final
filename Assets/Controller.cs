@@ -73,6 +73,7 @@ public class Controller : MonoBehaviour
         // view of the headset, to determine the direction we should be moving in based on the 
         // direction the player is facing
         Vector3 moveDirection = centerEyeAnchor.forward;
+        moveDirection.y = 0;
 
         // // we are removing any vertical components for now, so our movement remains horizontal, and height 
         // // is only affected by the rigid body interaction. 

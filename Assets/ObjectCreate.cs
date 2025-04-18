@@ -22,7 +22,7 @@ public class ObjectCreate : MonoBehaviour
 
 // Gets reference to the ISDK game object with the script - we will spawn new objects with their components on them, and we can also put this script/object on them and update 
 // ISDK values accordingly to new objects 
-    public GameObject ISDK; 
+    // public GameObject ISDK; 
 
     // Vector3 to move our position 
     private Vector3 movePos;
@@ -43,14 +43,16 @@ public class ObjectCreate : MonoBehaviour
     private int spawnOnce;
  
  // A variable to gain access to the ISDK component for hand grab interactable 
- private HandGrabInteractable HGIP;
+//  private HandGrabInteractable HGIP;
 
- // A variable to then gain access to the specific component in the ISDK Hand Grab Interactable Script we need 
- private PointableElement HGIP2;
+//  // A variable to then gain access to the specific component in the ISDK Hand Grab Interactable Script we need 
+//  private PointableElement HGIP2;
+
+ public GameObject objectToSpawn; 
 
  // Same thing as above but for other scripts
- private Grabbable GB;
- private GrabInteractable GBI;
+//  private Grabbable GB;
+//  private GrabInteractable GBI;
 //  private OneGrabTranslateTransformer OGT;
 
     // Start is called before the first frame update
@@ -66,16 +68,16 @@ public class ObjectCreate : MonoBehaviour
         objectIdx = 0; 
 
 // Get the hand grab interactable from the ISDK object - this object contains what scripts we need for interaction in the spawned objects
-        HGIP = ISDK.GetComponent<HandGrabInteractable>();
+        // HGIP = ISDK.GetComponent<HandGrabInteractable>();
 
         // Gain the script we need - also used by grab interactable 
         // HGIP2 = HGIP.GetComponent<PointableElement>();
 
 // Get the scripts needed 
-        GB = ISDK.GetComponent<Grabbable>();
+        // GB = ISDK.GetComponent<Grabbable>();
 
-        GBI = ISDK.GetComponent<GrabInteractable>();
-        // OGT = GB.GetComponent<OneGrabTranslateTransformer>();
+        // GBI = ISDK.GetComponent<GrabInteractable>();
+        // // OGT = GB.GetComponent<OneGrabTranslateTransformer>();
 
         // Get the handpose detection script component 
         script = handPose.GetComponent<ShapeRecognizerActiveState>();
@@ -107,22 +109,23 @@ public class ObjectCreate : MonoBehaviour
         playerPos.z = playerPos.z + 2f;
         playerPos.y = playerPos.y + 5f;
 
-        // Draw the shape and add it to the array 
-    objArr.Add(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+        // Add the shape/prefab to the array 
+    objArr.Add(objectToSpawn);
+   
 
     
     // On the new objects, it adds a rigid body and the scripts components neccessary to pick up objects 
-    GameObject newObj = objArr[objectIdx];
-    Rigidbody rb = newObj.AddComponent<Rigidbody>();
-    newObj.AddComponent<XRGrabInteractable>();
-    newObj.AddComponent<XRGeneralGrabTransformer>();
-    // newObj.AddComponent<Grabbable>();
-    // newObj.AddComponent<HandGrabInteractable>();
-    // newObj.AddComponent<GrabInteractable>();
-    // newObj.AddComponent<GrabFreeTransformer>();
-GB.InjectOptionalRigidbody(rb);
-HGIP.InjectRigidbody(rb);
-GBI.InjectRigidbody(rb);
+//     GameObject newObj = objArr[objectIdx];
+//     Rigidbody rb = newObj.AddComponent<Rigidbody>();
+//     newObj.AddComponent<XRGrabInteractable>();
+//     newObj.AddComponent<XRGeneralGrabTransformer>();
+//     // newObj.AddComponent<Grabbable>();
+//     // newObj.AddComponent<HandGrabInteractable>();
+//     // newObj.AddComponent<GrabInteractable>();
+//     // newObj.AddComponent<GrabFreeTransformer>();
+// GB.InjectOptionalRigidbody(rb);
+// HGIP.InjectRigidbody(rb);
+// GBI.InjectRigidbody(rb);
 
     
 // Gives these scripts the rigidbodies they need 
@@ -136,7 +139,7 @@ GBI.InjectRigidbody(rb);
    
     // newObj.GetComponent<Grabbable>().InjectOptionalOneGrabTransformer(OGT);
     // newObj.GetComponent<GrabInteractable>().InjectOptionalPointableElement(HGIP2);
-    ISDK.GetComponent<Grabbable>().InjectOptionalTargetTransform(objArr[objectIdx].transform);
+    // ISDK.GetComponent<Grabbable>().InjectOptionalTargetTransform(objArr[objectIdx].transform);
        // Maybe get a reference to the istk game object we are using / get access to that script or something and figure out how to put the cript in the component inspector spot -although we may not be using one here - lets get maybe the one we have on the interactsphere,
        // an just change its fields/rigidbodies/references here? Also figure out how we can not only pick up, but push and resize these objects! Also does
        // this script need to be under the handpose game object and scripts, or can it stand on its own since we have boolean trigger in update/how does audio do it without
@@ -146,7 +149,10 @@ GBI.InjectRigidbody(rb);
     // Add the vector3 to the position array 
     objPos.Add(new Vector3 (playerPos.x, playerPos.y, playerPos.z));
 
-// Set the newly created object's position 
+    // Actually instantiate and draw the object here 
+     Instantiate(objectToSpawn, new Vector3(playerPos.x, playerPos.y, playerPos.z), Quaternion.identity);
+
+// Set the newly created object's position in the space
     objArr[objectIdx].transform.position = objPos[objectIdx];
     
     // Increment the global value

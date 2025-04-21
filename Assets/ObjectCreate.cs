@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Oculus.Interaction;
-using Oculus.Interaction.Editor;
 using Oculus.Interaction.HandGrab;
 using Oculus.Interaction.PoseDetection;
 using UnityEngine;

@@ -1208,8 +1208,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OVRRig: {fileID: 560909908}
   centerEyeAnchor: {fileID: 2044042300}
-  speed: 2.5
+  ground: {fileID: 5060681561378684905, guid: f055c499a8f6a6e46b3629d5ba04834b, type: 3}
+  speed: 1.5
   handPose: {fileID: 1964235234}
+  gravity: -9
+  jumpForce: 5
 --- !u!4 &363410032
 Transform:
   m_ObjectHideFlags: 0
@@ -2852,7 +2855,7 @@ Transform:
   m_GameObject: {fileID: 560909908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 1.321, z: 2.902}
+  m_LocalPosition: {x: 0.96, y: 0.6, z: 2.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3018,13 +3021,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &563910001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5126,7 +5129,7 @@ Transform:
   m_GameObject: {fileID: 949654002}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8928,7 +8931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6040721330101085412, guid: f055c499a8f6a6e46b3629d5ba04834b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6040721330101085412, guid: f055c499a8f6a6e46b3629d5ba04834b, type: 3}
       propertyPath: m_LocalPosition.z

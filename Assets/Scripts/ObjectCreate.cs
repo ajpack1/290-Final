@@ -33,7 +33,7 @@ public class ObjectCreate : MonoBehaviour
     private int objectIdx;
 
 // A list to hold game objects we create - Unity forum helped to explain lists are better than array lists, as they can hold specific types, not just general object types
-    private List<GameObject> objArr;
+    public List<GameObject> objArr;
 
     // List to hold start positions of game objects
     private List<Vector3> objPos;

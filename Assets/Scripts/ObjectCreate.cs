@@ -18,6 +18,8 @@ public class ObjectCreate : MonoBehaviour
 // Two integers to store how many objects we can spawn, and a count to keep track 
     public int objToAllow; 
     private int objCount;
+// Reference to where the user is currently looking - will be used so shaoes will generate in front of the user 
+    public Transform centerEyeAnchor;
 
     // A private variable to hold the actual script - it is of the type of the script
     private ShapeRecognizerActiveState script;
@@ -39,7 +41,7 @@ public class ObjectCreate : MonoBehaviour
     private List<Vector3> objPos;
 
     // Vector 3 to hold the players position at any given time to determine where to place the objects 
-    private Vector3 playerPos;
+    // private Vector3 playerPos;
 
     // Global boolean to help make it so one object at a time spwans 
     private int spawnOnce;
@@ -107,9 +109,9 @@ public class ObjectCreate : MonoBehaviour
     public void drawShape(){
 
         // Gain access to the current user position - set player pos to be slightly incremented forward so the object does not spawn in the user 
-        playerPos = headset.transform.position;
-        playerPos.z = playerPos.z + 2f;
-        playerPos.y = playerPos.y + 5f;
+        // playerPos = headset.transform.position;
+        // playerPos.z = playerPos.z + 2f;
+        // playerPos.y = playerPos.y + 2f;
 
         // Add the shape/prefab to the array of objects
     objArr.Add(objectToSpawn);
@@ -150,10 +152,10 @@ public class ObjectCreate : MonoBehaviour
 
     
     // Add the vector3 to the position array 
-    objPos.Add(new Vector3 (playerPos.x, playerPos.y, playerPos.z));
+    objPos.Add(new Vector3 (centerEyeAnchor.position.x, centerEyeAnchor.position.y, centerEyeAnchor.position.z));
 
-    // Actually instantiate and draw the object here 
-     Instantiate(objectToSpawn, new Vector3(playerPos.x, playerPos.y, playerPos.z), Quaternion.identity);
+    // Actually instantiate and draw the object here based off where the user is looking - x/z position will be increased slightly to ensure it does not spawn ontop of user
+     Instantiate(objectToSpawn, new Vector3(centerEyeAnchor.position.x + 0.5f, centerEyeAnchor.position.y, centerEyeAnchor.position.z + 0.5f), Quaternion.identity);
 
 // Set the newly created object's position in the space
     objArr[objectIdx].transform.position = objPos[objectIdx];

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currObj: {fileID: 1552612947303608104}
-  groundObj: {fileID: 5060681561378684905, guid: f055c499a8f6a6e46b3629d5ba04834b, type: 3}
+  groundObj: {fileID: 3859105886592444664, guid: 1fc2828b9dc0a44aa89a545945345b6b, type: 3}
 --- !u!1 &2832849577920660354
 GameObject:
   m_ObjectHideFlags: 0

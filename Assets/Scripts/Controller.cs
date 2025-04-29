@@ -59,9 +59,9 @@ public class Controller : MonoBehaviour
         }
         
         
-        if (characterController.transform.position.y < ground.transform.position.y - 0.5f) {
-                characterController.transform.position = startPos;
-            }
+        // if (characterController.transform.position.y < ground.transform.position.y - 0.5f) {
+        //         characterController.transform.position = startPos;
+        //     }
     }
 
    

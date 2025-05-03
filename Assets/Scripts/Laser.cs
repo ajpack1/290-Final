@@ -7,6 +7,16 @@ public class Laser : MonoBehaviour
     public LineRenderer lineRenderer;
     public LayerMask collisionMask;
 
+    public Vector3 respawnPosition; 
+    public GameObject OVRRig; // Reference to OVRCameraRig
+
+    private CharacterController characterController;
+
+    void Start()
+    {
+        characterController = OVRRig.GetComponent<CharacterController>();
+    }
+
     void Update()
     {
         Vector3 origin = laserOrigin.position;
@@ -19,11 +29,11 @@ public class Laser : MonoBehaviour
             lineRenderer.SetPosition(0, origin);
             lineRenderer.SetPosition(1, hit.point);
 
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") && characterController != null)
             {
-                PlayerReset reset = hit.collider.GetComponent<PlayerReset>();
-                if (reset != null)
-                    reset.ResetPosition();
+                characterController.enabled = false;
+                OVRRig.transform.position = respawnPosition;
+                characterController.enabled = true;
             }
         }
         else
@@ -31,5 +41,7 @@ public class Laser : MonoBehaviour
             lineRenderer.SetPosition(0, origin);
             lineRenderer.SetPosition(1, origin + direction * laserLength);
         }
+
+        Debug.DrawRay(origin, direction * laserLength, Color.red);
     }
 }

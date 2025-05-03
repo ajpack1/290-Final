@@ -1916,6 +1916,18 @@ PrefabInstance:
       propertyPath: OVRRig
       value: 
       objectReference: {fileID: 560909908}
+    - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
+      propertyPath: respawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
+      propertyPath: respawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
+      propertyPath: respawnPosition.z
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3264,6 +3276,10 @@ PrefabInstance:
       propertyPath: OVRRig
       value: 
       objectReference: {fileID: 560909908}
+    - target: {fileID: 2984027996565716232, guid: 9237e3df7a1896c4cbf86fce2dfd30ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.19
+      objectReference: {fileID: 0}
     - target: {fileID: 4733869077022119887, guid: 9237e3df7a1896c4cbf86fce2dfd30ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.33

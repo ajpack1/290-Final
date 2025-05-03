@@ -39,7 +39,7 @@ public class Instructions : MonoBehaviour
         if (currPlayerPos.z >= objToTrigger.transform.position.z && currPlayerPos.z <= objToTrigger.transform.position.z + 5f && preventPosUpdate == 0){
             textPos.z = OVRRig.transform.position.z + 8f; // Make the text appear a bit in front of the user
             textPos.x = OVRRig.transform.position.x; // Move the text a bit to the right too 
-            textPos.y = OVRRig.transform.position.y + 4f; // Set the y position up a bit 
+            textPos.y = OVRRig.transform.position.y + 7f; // Set the y position up a bit 
             textPrefab.transform.position = textPos; // Set the position for the text 
             // posToKeepText = textPrefab.transform.position; // Lock the position of where the text is to remain - locked in as the current position when this if statement is triggered
             preventPosUpdate = 1; // Boolean lock enables - prevents pos position from updating - all future cases will hit the below, and will use posToKeepText from now on 

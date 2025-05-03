@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 
@@ -14,6 +15,9 @@ public class Instructions : MonoBehaviour
     
     // Reference to the camera rig 
     public GameObject OVRRig;
+
+    // Reference to audio source if an audio clip is to play
+    // public AudioSource audio;
 
 // Get reference to the text we are trying to move 
     public GameObject textPrefab;
@@ -41,6 +45,7 @@ public class Instructions : MonoBehaviour
             textPos.x = OVRRig.transform.position.x; // Move the text a bit to the right too 
             textPos.y = OVRRig.transform.position.y + 7f; // Set the y position up a bit 
             textPrefab.transform.position = textPos; // Set the position for the text 
+            // audio.Play(); // This will only play once 
             // posToKeepText = textPrefab.transform.position; // Lock the position of where the text is to remain - locked in as the current position when this if statement is triggered
             preventPosUpdate = 1; // Boolean lock enables - prevents pos position from updating - all future cases will hit the below, and will use posToKeepText from now on 
             

@@ -1918,15 +1918,15 @@ PrefabInstance:
       objectReference: {fileID: 560909908}
     - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
       propertyPath: respawnPosition.x
-      value: 0
+      value: -10.1
       objectReference: {fileID: 0}
     - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
       propertyPath: respawnPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7530213444999255328, guid: c9eb0fe73240947d0bd01029ca2f366f, type: 3}
       propertyPath: respawnPosition.z
-      value: 30
+      value: -64.89
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2663,7 +2663,7 @@ GameObject:
   - component: {fileID: 560909914}
   m_Layer: 0
   m_Name: OVRCameraRig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2677,7 +2677,7 @@ Transform:
   m_GameObject: {fileID: 560909908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.00049309706, z: -0, w: 0.99999994}
-  m_LocalPosition: {x: -10.1, y: -1.72, z: -94.41}
+  m_LocalPosition: {x: -10.1, y: -1.72, z: -64.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4956,6 +4956,18 @@ PrefabInstance:
       propertyPath: OVRRig
       value: 
       objectReference: {fileID: 560909908}
+    - target: {fileID: 2546699853861343282, guid: bd4b91101f9974ce99fe3f5e80b2777c, type: 3}
+      propertyPath: respawnPosition.x
+      value: -10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546699853861343282, guid: bd4b91101f9974ce99fe3f5e80b2777c, type: 3}
+      propertyPath: respawnPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546699853861343282, guid: bd4b91101f9974ce99fe3f5e80b2777c, type: 3}
+      propertyPath: respawnPosition.z
+      value: -64.89
+      objectReference: {fileID: 0}
     - target: {fileID: 7371897736705990449, guid: bd4b91101f9974ce99fe3f5e80b2777c, type: 3}
       propertyPath: m_Name
       value: Laser 2

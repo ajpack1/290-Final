@@ -18,9 +18,11 @@ public class ObjectCreate : MonoBehaviour
 // Two integers to store how many objects we can spawn, and a count to keep track 
     public int objToAllow; 
     private int objCount;
-// Reference to where the user is currently looking - will be used so shaoes will generate in front of the user 
-    public Transform centerEyeAnchor;
 
+    // public GameObject OVRRig;
+// Reference to where the user is currently looking - will be used so shapes will generate in front of the user 
+    public Transform centerEyeAnchor;
+private Vector3 eyeAnchorPos; 
     // A private variable to hold the actual script - it is of the type of the script
     private ShapeRecognizerActiveState script;
 
@@ -71,18 +73,6 @@ public class ObjectCreate : MonoBehaviour
         // Initialize objectIdx
         objectIdx = 0; 
 
-// Get the hand grab interactable from the ISDK object - this object contains what scripts we need for interaction in the spawned objects
-        // HGIP = ISDK.GetComponent<HandGrabInteractable>();
-
-        // Gain the script we need - also used by grab interactable 
-        // HGIP2 = HGIP.GetComponent<PointableElement>();
-
-// Get the scripts needed 
-        // GB = ISDK.GetComponent<Grabbable>();
-
-        // GBI = ISDK.GetComponent<GrabInteractable>();
-        // // OGT = GB.GetComponent<OneGrabTranslateTransformer>();
-
         // Get the handpose detection script component 
         script = handPose.GetComponent<ShapeRecognizerActiveState>();
 
@@ -108,6 +98,8 @@ public class ObjectCreate : MonoBehaviour
 
     public void drawShape(){
 
+// Get the current position of the eye anchor 
+eyeAnchorPos = centerEyeAnchor.position;  
         // Gain access to the current user position - set player pos to be slightly incremented forward so the object does not spawn in the user 
         // playerPos = headset.transform.position;
         // playerPos.z = playerPos.z + 2f;
@@ -116,46 +108,16 @@ public class ObjectCreate : MonoBehaviour
         // Add the shape/prefab to the array of objects
     objArr.Add(objectToSpawn);
     objCount++;
-   
-
-    
-    // On the new objects, it adds a rigid body and the scripts components neccessary to pick up objects 
-//     GameObject newObj = objArr[objectIdx];
-//     Rigidbody rb = newObj.AddComponent<Rigidbody>();
-//     newObj.AddComponent<XRGrabInteractable>();
-//     newObj.AddComponent<XRGeneralGrabTransformer>();
-//     // newObj.AddComponent<Grabbable>();
-//     // newObj.AddComponent<HandGrabInteractable>();
-//     // newObj.AddComponent<GrabInteractable>();
-//     // newObj.AddComponent<GrabFreeTransformer>();
-// GB.InjectOptionalRigidbody(rb);
-// HGIP.InjectRigidbody(rb);
-// GBI.InjectRigidbody(rb);
-
-    
-// Gives these scripts the rigidbodies they need 
-    // newObj.GetComponent<Grabbable>().InjectOptionalRigidbody(newObj.GetComponent<Rigidbody>());
-    // newObj.GetComponent<HandGrabInteractable>().InjectRigidbody(newObj.GetComponent<Rigidbody>());
-    // newObj.GetComponent<GrabInteractable>().InjectRigidbody(newObj.GetComponent<Rigidbody>());
-   
-   // Apply the components we wanted from ISDK to the current scripts we need these ISDK components in 
-    // newObj.GetComponent<HandGrabInteractable>().InjectOptionalPointableElement(HGIP2);
-
-   
-    // newObj.GetComponent<Grabbable>().InjectOptionalOneGrabTransformer(OGT);
-    // newObj.GetComponent<GrabInteractable>().InjectOptionalPointableElement(HGIP2);
-    // ISDK.GetComponent<Grabbable>().InjectOptionalTargetTransform(objArr[objectIdx].transform);
-       // Maybe get a reference to the istk game object we are using / get access to that script or something and figure out how to put the cript in the component inspector spot -although we may not be using one here - lets get maybe the one we have on the interactsphere,
-       // an just change its fields/rigidbodies/references here? Also figure out how we can not only pick up, but push and resize these objects! Also does
-       // this script need to be under the handpose game object and scripts, or can it stand on its own since we have boolean trigger in update/how does audio do it without
-       // it constantly playing (equivalent to when my motion just occured regardless of thumbs up when it was under the handpose and its script? *****************
 
     
     // Add the vector3 to the position array 
-    objPos.Add(new Vector3 (centerEyeAnchor.position.x, centerEyeAnchor.position.y, centerEyeAnchor.position.z));
+    objPos.Add(new Vector3 (eyeAnchorPos.x, eyeAnchorPos.y, eyeAnchorPos.z));
+
+    // Vector3 facing = centerEyeAnchor.forward + OVRRig.transform.position;
+    // facing.y = 0;
 
     // Actually instantiate and draw the object here based off where the user is looking - x/z position will be increased slightly to ensure it does not spawn ontop of user
-     Instantiate(objectToSpawn, new Vector3(centerEyeAnchor.position.x + 0.5f, centerEyeAnchor.position.y, centerEyeAnchor.position.z + 0.5f), Quaternion.identity);
+     Instantiate(objectToSpawn, new Vector3(eyeAnchorPos.x + 0.5f, eyeAnchorPos.y, eyeAnchorPos.z + 1.5f), Quaternion.identity);
 
 // Set the newly created object's position in the space
     objArr[objectIdx].transform.position = objPos[objectIdx];

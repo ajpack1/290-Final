@@ -23,29 +23,37 @@ public class Instructions : MonoBehaviour
     public GameObject textPrefab;
 
     private Vector3 currPlayerPos;
-    private Vector3 posToKeepText; 
+    // private Vector3 posToKeepText; 
 
     private int preventPosUpdate = 0; 
+
+    private float lerpPos;
+    private float time = 0;
+
+    private AudioSource asource;
 
     // public Vector3 spawnPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+         asource = objToTrigger.GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Create the time and lerp position values on each call to update, for a smooth transition 
+        time += Time.deltaTime;
+        lerpPos = Mathf.Sin(time) * 0.5f + 0.5f;
         // Player Pos updates each time, but each new update will not always be used - used to just make sure the vector3 gets initialized 
         currPlayerPos = OVRRig.transform.position;
         // If statement will run once, set the position of the text, change the int lock, and will never run again 
         if (currPlayerPos.z >= objToTrigger.transform.position.z && currPlayerPos.z <= objToTrigger.transform.position.z + 5f && preventPosUpdate == 0){
-            textPos.z = OVRRig.transform.position.z + 8f; // Make the text appear a bit in front of the user
+            textPos.z = OVRRig.transform.position.z + 6f; // Make the text appear a bit in front of the user
             textPos.x = OVRRig.transform.position.x; // Move the text a bit to the right too 
             textPos.y = OVRRig.transform.position.y + 7f; // Set the y position up a bit 
             textPrefab.transform.position = textPos; // Set the position for the text 
-            // audio.Play(); // This will only play once 
+             asource.Play(); // This will only play once 
             // posToKeepText = textPrefab.transform.position; // Lock the position of where the text is to remain - locked in as the current position when this if statement is triggered
             preventPosUpdate = 1; // Boolean lock enables - prevents pos position from updating - all future cases will hit the below, and will use posToKeepText from now on 
             
@@ -53,6 +61,12 @@ public class Instructions : MonoBehaviour
         // } else if(currPlayerPos.z >= objToTrigger.transform.position.z && currPlayerPos.z <= objToTrigger.transform.position.z + 5f && preventPosUpdate == 1){
         //     textPrefab.transform.position = posToKeepText; // Position has been set - from this point on, keep the text appearing at the same place 
         // }
+    }
+    // If the starting position has been set, we can then have lerping begin 
+    if (preventPosUpdate == 1){
+        // Only move the Vector 3s y position 
+        Vector3 yOnlyMove = new Vector3(textPos.x, OVRRig.transform.position.y + 5f, textPos.z);
+    textPrefab.transform.position = Vector3.Lerp(textPos, yOnlyMove, lerpPos);
     }
 }
 }

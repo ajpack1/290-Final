@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class FloatingMotion : MonoBehaviour {
-    private Vector3 randomDir;
-    private float floatSpeed;
-    private float rotationSpeed;
+public class FloatingMotion : MonoBehaviour
+{
+    public float floatSpeed = 1f;
+    public float floatHeight = 0.5f;
 
-    void Start() {
-        randomDir = Random.insideUnitSphere.normalized;
-        floatSpeed = Random.Range(0.2f, 0.5f);
-        rotationSpeed = Random.Range(10f, 50f);
+    private Vector3 startPos;
+
+    void Start()
+    {
+        startPos = transform.position;
     }
 
-    void Update() {
-        transform.Translate(randomDir * floatSpeed * Time.deltaTime, Space.World);
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.Self);
+    void Update()
+    {
+        // Apply a smooth sine wave motion on the y-axis
+        float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatHeight;
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 }

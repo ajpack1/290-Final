@@ -5,36 +5,31 @@ public class FloatingShapeSpawner : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject cylinderPrefab;
 
-    public int spawnCount = 10;         // Reduced for testing
-    public float spawnRadius = 5f;      // Smaller radius
+    public int spawnCount = 10;
+    public float spawnRadius = 10f;
+    public float floatSpeed = 0.5f;
+    public float floatRange = 1f;
+    public float fixedY = 1f;
 
     void Start()
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            SpawnShape(cubePrefab);
-            SpawnShape(cylinderPrefab);
+            SpawnFloatingObject(cubePrefab);
+            SpawnFloatingObject(cylinderPrefab);
         }
     }
 
-    void SpawnShape(GameObject prefab)
+    void SpawnFloatingObject(GameObject prefab)
     {
-        if (prefab == null)
-        {
-            Debug.LogWarning("Prefab is missing!");
-            return;
-        }
+        Vector3 spawnPos = transform.position + new Vector3(
+            Random.Range(-spawnRadius, spawnRadius),
+            0f,
+            Random.Range(-spawnRadius, spawnRadius)
+        );
+        spawnPos.y = fixedY;
 
-        Vector3 spawnPos = transform.position + Random.insideUnitSphere * spawnRadius;
-        GameObject shape = Instantiate(prefab, spawnPos, Random.rotation);
-
-        Rigidbody rb = shape.GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = shape.AddComponent<Rigidbody>();
-        }
-        rb.useGravity = false;
-
-        shape.AddComponent<FloatingMotion>();
+        GameObject obj = Instantiate(prefab, spawnPos, Random.rotation);
+        obj.AddComponent<FloatingMotion>().Init(floatSpeed, floatRange, fixedY);
     }
 }

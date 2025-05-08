@@ -6760,7 +6760,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3b34d45aad4874a78a711e5e67ef0383, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5abd50ca0febc44c08fc8909463066fc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -10589,7 +10589,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5abd50ca0febc44c08fc8909463066fc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3b34d45aad4874a78a711e5e67ef0383, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -10798,6 +10798,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1555644842305945648, guid: d3d30d49ee5f5bc4fbe4ccd06cbf8e20, type: 3}
   m_PrefabInstance: {fileID: 1884483909}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1885074404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885074407}
+  - component: {fileID: 1885074406}
+  - component: {fileID: 1885074408}
+  m_Layer: 0
+  m_Name: Really High Up Stars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1885074406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885074404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0db67d37a774062b3d6f545df7a420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1885074407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885074404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1, y: 25.4, z: -33.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885074408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885074404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d5213e501546d782b17d5ed5600b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 5554526042002090504, guid: bf4338b80ae09424babd9dc99dc30873, type: 3}
+  cylinderPrefab: {fileID: 6952177864080765384, guid: 50fb61f34c43d41a7873c66e3ba78e26, type: 3}
+  spawnCount: 100
+  spawnRadius: 50
 --- !u!1 &1896642113
 GameObject:
   m_ObjectHideFlags: 0
@@ -13178,6 +13239,7 @@ SceneRoots:
   - {fileID: 788071018122341475}
   - {fileID: 1910460992}
   - {fileID: 1281409}
+  - {fileID: 1885074407}
   - {fileID: 1260112557}
   - {fileID: 471382327}
   - {fileID: 1035764290}

@@ -14,7 +14,7 @@ public class GlowAndColor : MonoBehaviour
         }
 
         // Set initial color
-        Color baseColor = Color.cyan; // or white, blue, etc.
+        Color baseColor = Color.gray; // or white, blue, etc.
         rend.material.color = baseColor;
 
         // Enable emission
@@ -29,7 +29,7 @@ public class GlowAndColor : MonoBehaviour
         time += Time.deltaTime;
         float pulse = 0.5f + 0.5f * Mathf.Sin(time * 2f); // oscillates 0 to 1
 
-        Color glowColor = Color.cyan; // change to any color you like
+        Color glowColor = Color.white; // change to any color you like
 
         // Pulse the emission
         rend.material.SetColor("_EmissionColor", glowColor * pulse);

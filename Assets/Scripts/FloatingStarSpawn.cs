@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class FloatingStarSpawn : MonoBehaviour
+public class FloatingStarSpawner : MonoBehaviour
 {
     public GameObject cubePrefab;
     public GameObject cylinderPrefab;
+
     public int spawnCount = 10;
     public float spawnRadius = 5f;
 
@@ -21,6 +22,7 @@ public class FloatingStarSpawn : MonoBehaviour
             null,
             false, 50
         );
+
         // Create cylinder pool
         cylinderPool = new ObjectPool<GameObject>(
             () => CreatePooledObject(cylinderPrefab),
@@ -43,29 +45,40 @@ public class FloatingStarSpawn : MonoBehaviour
         GameObject shape = pool.Get();
 
         Vector3 spawnPos = transform.position + Random.insideUnitSphere * spawnRadius;
+        spawnPos.y = 50f; // Set a fixed Y level if desired
         shape.transform.position = spawnPos;
         shape.transform.rotation = Random.rotation;
 
-        // Reset floating position
         if (shape.TryGetComponent(out FloatingStarMotion motion))
         {
-            motion.enabled = false;
-            motion.enabled = true; // Reset floating motion
+            motion.Init(
+                floatSpeed: 0.5f,
+                floatRange: 1f,
+                yLevel: spawnPos.y
+            );
         }
     }
+
 
     GameObject CreatePooledObject(GameObject prefab)
     {
         GameObject obj = Instantiate(prefab);
+        if (!obj.TryGetComponent<Rigidbody>(out var rb))
+        {
+            rb = obj.AddComponent<Rigidbody>();
+        }
+        rb.useGravity = false;
 
         if (!obj.GetComponent<FloatingStarMotion>())
         {
             obj.AddComponent<FloatingStarMotion>();
         }
+
         if (!obj.GetComponent<GlowAndColor>())
         {
             obj.AddComponent<GlowAndColor>();
         }
+
         return obj;
     }
 }

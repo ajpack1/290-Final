@@ -2,81 +2,49 @@ using UnityEngine;
 
 public class PuzzleSnappingManager : MonoBehaviour
 {
-    // Puzzle Setup
-    public Transform[] puzzlePieces;          // Parent objects like Zoya CubeBOT R
-    public Transform[] targetPositions;       // Empty GameObjects for correct locations
+    public Transform[] puzzlePieces;
+    public Transform[] targetPositions;
     public float snapThreshold = 0.2f;
 
-    // Visuals for when in place
-    public Material glowMaterial;             // Material with emission for glowing effect
+    public Material glowMaterial;
+    public GameObject wallToDisable;
 
-    // Completion information
-    public GameObject completionText;         // Optional TextMeshPro object
-    private bool[] snapped;
-
-    void Start()
-    {
-        snapped = new bool[puzzlePieces.Length];
-
-        // Check if any pieces are already in the correct position
-        for (int i = 0; i < puzzlePieces.Length; i++)
-        {
-            float dist = Vector3.Distance(puzzlePieces[i].position, targetPositions[i].position);
-            if (dist <= snapThreshold)
-            {
-                // Snap into place
-                puzzlePieces[i].position = targetPositions[i].position;
-                puzzlePieces[i].rotation = targetPositions[i].rotation;
-                snapped[i] = true;
-
-                // Apply glow material
-                Renderer r = puzzlePieces[i].GetComponentInChildren<Renderer>();
-                if (r != null && glowMaterial != null)
-                {
-                    r.material = glowMaterial;
-                }
-            }
-        }
-
-        if (AllSnapped() && completionText != null)
-            completionText.SetActive(true);
-        else if (completionText != null)
-            completionText.SetActive(false);
-    }
+    private bool puzzleCompleted = false;
 
     void Update()
     {
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
-            if (snapped[i]) continue;
+            Renderer r = puzzlePieces[i].GetComponentInChildren<Renderer>();
+            if (r == null || r.material == glowMaterial) continue;
 
             float dist = Vector3.Distance(puzzlePieces[i].position, targetPositions[i].position);
             if (dist <= snapThreshold)
             {
-                // Snap into place
                 puzzlePieces[i].position = targetPositions[i].position;
                 puzzlePieces[i].rotation = targetPositions[i].rotation;
-                snapped[i] = true;
 
-                // Apply glow material
-                Renderer r = puzzlePieces[i].GetComponentInChildren<Renderer>();
-                if (r != null && glowMaterial != null)
-                {
-                    r.material = glowMaterial;
-                }
+                // Apply glow
+                r.material = glowMaterial;
             }
         }
 
-        if (AllSnapped() && completionText != null)
+        if (!puzzleCompleted && AllPiecesGlowing())
         {
-            completionText.SetActive(true);
+            puzzleCompleted = true;
+            if (wallToDisable != null)
+                wallToDisable.SetActive(false);
         }
     }
 
-    bool AllSnapped()
+    bool AllPiecesGlowing()
     {
-        foreach (bool isSnapped in snapped)
-            if (!isSnapped) return false;
+        foreach (Transform piece in puzzlePieces)
+        {
+            Renderer r = piece.GetComponentInChildren<Renderer>();
+            if (r == null || r.sharedMaterial.name != glowMaterial.name)
+                return false;
+        }
         return true;
     }
 }

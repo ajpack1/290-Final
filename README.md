@@ -3,7 +3,7 @@
 
 Final Project Repository for IMDM 290 - Collaborative Studio I: Image + Time.
 
-Game Recording: https://youtu.be/cD8tgHbMQNI
+Game Recording: https://youtu.be/TxKyq2n_x-o
 
 ## Project Description 
 An Immersive VR Game where the player encounters various obstacles in their environment, and modifies surrounding objects to build solutions progress through the world. 
